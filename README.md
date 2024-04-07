@@ -133,17 +133,11 @@ kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 > Error from server (NotFound): the server could not find the requested resource  
 
 ## Deploy Prometheus Adapter
-
-- Create following files
-  - `6-prometheus-adapter/0-rbac.yaml`
-  - `6-prometheus-adapter/1-deployment.yaml`
-  - `6-prometheus-adapter/2-service.yaml`
-  - `6-prometheus-adapter/3-apiservice.yaml`
-  - `6-prometheus-adapter/4-configmap.yaml` (only 1 rule)
-- Run PromQL `http_requests_total{namespace!="",pod!=""}` query
-- Deploy Prometheus Adapter
 ```
-kubectl apply -f 6-prometheus-adapter
+kubectl apply -f 6-prometheus-adapter/0-adapter
+kubectl apply -f 6-prometheus-adapter/1-custom-metrics
+kubectl apply -f 6-prometheus-adapter/2-resource-metrics
+```
 ```
 
 
@@ -164,11 +158,7 @@ kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 > Error from server (NotFound): the server could not find the requested resource  
 - Deploy Prometheus adapter
 > configmap last one
-```
-kubectl apply -f 6-prometheus-adapter/0-adapter
-kubectl apply -f 6-prometheus-adapter/1-custom-metrics
-kubectl apply -f 6-prometheus-adapter/2-resource-metrics
-```
+
 ```
 kubectl get apiservice
 ```
