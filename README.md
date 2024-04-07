@@ -93,11 +93,6 @@ kubectl port-forward svc/prometheus-operated 9090 -n monitoring
 - Go to http://localhost:9090
 - Use `http` to query Prometheus (empty)
 
-- Create following files
-  - `5-demo/0-deployment.yaml`
-  - `5-demo/1-service.yaml`
-  - `5-demo/2-service-monitor.yaml`
-  - `5-demo/3-hpa-http-requests.yaml`
 ```
 kubectl apply -f 5-demo
 ```
@@ -130,7 +125,7 @@ kubectl describe hpa http -n demo
 ```
 kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 ```
-> Error from server (NotFound): the server could not find the requested resource  
+> Error from server (NotFound): the server could not find the requested resource 
 
 ## Deploy Prometheus Adapter
 ```
@@ -148,15 +143,21 @@ watch -n 1 -t kubectl get pods -n demo
 ```
 ```
 kubectl describe hpa http -n demo
-```
-> Warning  FailedGetPodsMetric           26s (x13 over 3m30s)  horizontal-pod-autoscaler  unable to get metric http_requests_per_second: unable to fetch metrics from custom metrics API: no custom metrics API (custom.metrics.k8s.io) registered  
-```
+
 kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 ```
-> Error from server (NotFound): the server could not find the requested resource  
+
 - Deploy Prometheus adapter
-> configmap last one
 
 ```
 kubectl get apiservice
 ```
+#8 generate load 
+``` sh
+  for ((i = 0; i < 1000; i++)); do                                                         ✔  14:44:01  
+   curl localhost:8081/fibonacci \
+    -H "Content-Type: application/json" \
+    -d '{"number": 80}'
+done
+```
+### keep seeing the terminal tabs opened
