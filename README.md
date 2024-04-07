@@ -5,10 +5,10 @@ curl localhost:8081/fibonacci \
 
 > Fibonacci number is 89!
 ```
+```
 curl localhost:8081/fibonacci \
     -H "Content-Type: application/json" \
     -d '{"number": 20}'
-```
 > Fibonacci number is 10946!
 ```
 curl localhost:8081/metrics
