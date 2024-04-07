@@ -1,0 +1,41 @@
+# ---
+# apiVersion: policy/v1  # Update the API version to a supported version
+# kind: PodSecurityPolicy
+# metadata:
+#   name: cadvisor
+# spec:
+#   privileged: false  # Ensure the policy does not allow privileged containers
+#   allowPrivilegeEscalation: false  # Ensure privilege escalation is not allowed
+#   readOnlyRootFilesystem: true  # Ensure the root filesystem is read-only
+#   allowedCapabilities:  # Limit the capabilities granted to containers
+#     - NET_BIND_SERVICE
+#     - SETPCAP
+#   hostNetwork: false  # Ensure containers do not use the host network
+#   hostPorts:  # Limit the host ports that containers can expose
+#     - min: 30000
+#       max: 32767
+#   hostIPC: false  # Ensure containers do not share the host IPC namespace
+#   hostPID: false  # Ensure containers do not share the host PID namespace
+#   runAsUser:  # Define the user under which the containers run
+#     rule: MustRunAsNonRoot
+#   seLinux:  # Configure SELinux options
+#     rule: RunAsAny
+#   supplementalGroups:  # Configure supplemental groups
+#     rule: RunAsAny
+#   fsGroup:  # Configure fsGroup
+#     rule: RunAsAny
+#   volumes:  # Define allowed volumes
+#     - configMap
+#     - downwardAPI
+#     - emptyDir
+#     - persistentVolumeClaim
+#     - projected
+#     - secret
+#     - downwardAPI
+#   volumeName:  # Define the volume name
+#     - "default"
+#   allowedHostPaths:  # Define allowed host paths
+#     - pathPrefix: "/var/run"
+#     - pathPrefix: "/sys"
+#     - pathPrefix: "/var/lib/docker"
+#     - pathPrefix: "/dev/disk"
