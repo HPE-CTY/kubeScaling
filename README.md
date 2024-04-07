@@ -1,4 +1,5 @@
 ## NOTE:Works only on arm based devices,minor changes to be made for other configurations
+## for docker image pull from shreyaspai77/xyz:latest
 ```
 curl localhost:8081/fibonacci \
     -H "Content-Type: application/json" \
