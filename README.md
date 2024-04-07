@@ -152,9 +152,9 @@ kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 ```
 kubectl get apiservice
 ```
-# 8 generate load 
+# 8.Generate http load 
 ``` sh
-  for ((i = 0; i < 1000; i++)); do                                                         ✔  14:44:01  
+  for ((i = 0; i < 1000; i++)); do                                                       
    curl localhost:8081/fibonacci \
     -H "Content-Type: application/json" \
     -d '{"number": 20}'
@@ -162,3 +162,10 @@ done
 ```
 - keep seeing the terminals opened
   - after running the curl requests, initially average being 0 slowly increases and crosses 9000
+# 9.Generate CPU load
+```sh 
+    curl localhost:8081/fibonacci \              
+    -H "Content-Type: application/json" \
+    -d '{"number": 100}'
+```
+- observe pod increase
