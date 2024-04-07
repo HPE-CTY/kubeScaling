@@ -138,8 +138,6 @@ kubectl apply -f 6-prometheus-adapter/0-adapter
 kubectl apply -f 6-prometheus-adapter/1-custom-metrics
 kubectl apply -f 6-prometheus-adapter/2-resource-metrics
 ```
-```
-
 
 - Open 3 tabs
 ```
