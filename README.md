@@ -18,7 +18,7 @@ curl localhost:8081/metrics
 > \# HELP http_requests_total Total number of http requests  
 > \# TYPE http_requests_total counter  
 > \# http_requests_total{method="POST"} 2
-
+```
 ## 3. Create Namespaces in Kubernetes
 - Create `demo` and `monitoring` namespaces
 ```
