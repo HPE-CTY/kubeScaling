@@ -157,7 +157,7 @@ kubectl get apiservice
   for ((i = 0; i < 1000; i++)); do                                                         ✔  14:44:01  
    curl localhost:8081/fibonacci \
     -H "Content-Type: application/json" \
-    -d '{"number": 80}'
+    -d '{"number": 20}'
 done
 ```
 ### keep seeing the terminal tabs opened
