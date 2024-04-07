@@ -165,7 +165,9 @@ kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 - Deploy Prometheus adapter
 > configmap last one
 ```
-kubectl apply -f 6-prometheus-adapter
+kubectl apply -f 6-prometheus-adapter/0-adapter
+kubectl apply -f 6-prometheus-adapter/1-custom-metrics
+kubectl apply -f 6-prometheus-adapter/2-resource-metrics
 ```
 ```
 kubectl get apiservice
