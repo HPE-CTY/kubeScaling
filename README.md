@@ -1,3 +1,4 @@
+## NOTE:Works only on arm based devices,minor changes to be made for other configurations
 ```
 curl localhost:8081/fibonacci \
     -H "Content-Type: application/json" \
@@ -152,7 +153,7 @@ kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 ```
 kubectl get apiservice
 ```
-# 8.Generate http load 
+## 8.Generate http load 
 ``` sh
   for ((i = 0; i < 1000; i++)); do                                                       
    curl localhost:8081/fibonacci \
@@ -162,7 +163,7 @@ done
 ```
 - keep seeing the terminals opened
   - after running the curl requests, initially average being 0 slowly increases and crosses 9000
-# 9.Generate CPU load
+## 9.Generate CPU load
 ```sh 
     curl localhost:8081/fibonacci \              
     -H "Content-Type: application/json" \
