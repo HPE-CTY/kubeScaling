@@ -11,7 +11,9 @@ curl localhost:8081/fibonacci \
     -d '{"number": 20}'
 > Fibonacci number is 10946!
 ```
+```
 curl localhost:8081/metrics
+```
 ```
 > \# HELP http_requests_total Total number of http requests  
 > \# TYPE http_requests_total counter  
