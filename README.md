@@ -134,7 +134,7 @@ kubectl apply -f 6-prometheus-adapter/1-custom-metrics
 kubectl apply -f 6-prometheus-adapter/2-resource-metrics
 ```
 
-- Open 3 tabs
+- Open 3 terminal tabs
 ```
 watch -n 1 -t kubectl get hpa -n demo
 ```
@@ -152,7 +152,7 @@ kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
 ```
 kubectl get apiservice
 ```
-#8 generate load 
+# 8 generate load 
 ``` sh
   for ((i = 0; i < 1000; i++)); do                                                         ✔  14:44:01  
    curl localhost:8081/fibonacci \
@@ -160,4 +160,5 @@ kubectl get apiservice
     -d '{"number": 20}'
 done
 ```
-### keep seeing the terminal tabs opened
+- keep seeing the terminals opened
+  - after running the curl requests, initially average being 0 slowly increases and crosses 9000
