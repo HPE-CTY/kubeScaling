@@ -125,7 +125,7 @@ kubectl get hpa -n demo
 kubectl describe hpa http -n demo
 ```
 ```
-kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | jq
+kubectl get --raw /apis/cusxtom.metrics.k8s.io/v1beta1 | jq
 ```
 > Error from server (NotFound): the server could not find the requested resource 
 

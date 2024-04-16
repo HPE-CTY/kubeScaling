@@ -10,7 +10,7 @@ spec:
     kind: Deployment
     name: express
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 5
   metrics:
   # use a "Pods" metric, which takes the average of the
   # given metric across all pods controlled by the autoscaling target
@@ -29,5 +29,5 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 80
+        averageUtilization: 50
 
