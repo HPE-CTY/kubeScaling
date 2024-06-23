@@ -13,3 +13,5 @@ spec:
   serviceMonitorSelector:
     matchLabels:
       team: devops
+# remote_write:
+    

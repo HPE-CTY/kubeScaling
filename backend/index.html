@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit HPA Config</title>
+  </head>
+  <body>
+    <h1>Edit HPA Configuration</h1>
+    <form action="/update-hpa" method="post">
+      <label for="averageValue"
+        >Average Value (milli-requests per second):</label
+      >
+      <input
+        type="number"
+        id="averageValue"
+        name="averageValue"
+        step="0.1"
+        required
+      /><br /><br />
+      <label for="averageUtilization">CPU Average Utilization (%):</label>
+      <input
+        type="number"
+        id="averageUtilization"
+        name="averageUtilization"
+        required
+      /><br /><br />
+      <input type="submit" value="Update HPA" />
+    </form>
+  </body>
+</html>
