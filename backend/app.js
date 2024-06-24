@@ -8,7 +8,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 
 const envPath = path.join(__dirname, "..", ".env"); //change as per requirement
-dotenv.config({ path: envPath }); //.env config 
+dotenv.config({ path: envPath }); //.env config
 const pool = new Pool({
   user: process.env.user,
   host: "localhost",
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 const hpaFilePath = process.env.HPA_FILE_PATH;
 
 app.post("/update-hpa", (req, res) => {
-  let { averageValue, averageUtilization } = req.body;
+  let { averageValue, averageUtilization, minReplicas, maxReplicas } = req.body;
 
   if (!averageValue || isNaN(parseFloat(averageValue))) {
     averageValue = "500";
@@ -41,7 +41,14 @@ app.post("/update-hpa", (req, res) => {
   if (!averageUtilization || isNaN(parseInt(averageUtilization))) {
     averageUtilization = 50;
   }
-
+  if (!minReplicas || isNaN(parseInt(minReplicas))) {
+    minReplicas = "1";
+  }
+  if (!maxReplicas || isNaN(parseInt(maxReplicas))) {
+    maxReplicas = "5";
+  }
+  console.log({ minReplicas });
+  console.log({ maxReplicas });
   const insertQuery =
     "INSERT INTO hpa_config (average_http_value, average_utilisation_percentage) VALUES ($1, $2)";
 
@@ -69,7 +76,8 @@ app.post("/update-hpa", (req, res) => {
           console.error("Error parsing HPA configuration file:", parseErr);
           return res.status(500).send("Error parsing HPA configuration file");
         }
-
+        hpaConfig.spec.minReplicas = parseInt(minReplicas);
+        hpaConfig.spec.maxReplicas = parseInt(maxReplicas);
         hpaConfig.spec.metrics[0].pods.target.averageValue = `${parseFloat(
           averageValue
         )}m`;
