@@ -16,7 +16,10 @@ const fibonacci = (num) => {
   if (num <= 1) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
 };
-
+app.get("/memory", (reg, res) => {
+  var arr = new Array(20000000).fill(0);
+  res.send("Array is created");
+});
 app.post("/fibonacci", (req, res) => {
   const fibonacciNumber = fibonacci(req.body.number);
   counter.inc({ method: "POST" });
