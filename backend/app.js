@@ -32,7 +32,13 @@ app.use(express.urlencoded({ extended: true }));
 const hpaFilePath = process.env.HPA_FILE_PATH;
 
 app.post("/update-hpa", (req, res) => {
-  let { averageValue, averageUtilization, minReplicas, maxReplicas } = req.body;
+  let {
+    averageValue,
+    averageUtilization,
+    minReplicas,
+    maxReplicas,
+    memoryUtil,
+  } = req.body;
 
   if (!averageValue || isNaN(parseFloat(averageValue))) {
     averageValue = "500";
@@ -47,8 +53,13 @@ app.post("/update-hpa", (req, res) => {
   if (!maxReplicas || isNaN(parseInt(maxReplicas))) {
     maxReplicas = "5";
   }
+  if (!memoryUtil || isNaN(parseInt(memoryUtil))) {
+    memoryUtil = "25";
+  }
+
   console.log({ minReplicas });
   console.log({ maxReplicas });
+  console.log({ memoryUtil });
   const insertQuery =
     "INSERT INTO hpa_config (average_http_value, average_utilisation_percentage) VALUES ($1, $2)";
 
@@ -83,7 +94,8 @@ app.post("/update-hpa", (req, res) => {
         )}m`;
         hpaConfig.spec.metrics[1].resource.target.averageUtilization =
           parseInt(averageUtilization);
-
+        hpaConfig.spec.metrics[2].resource.target.averageUtilization =
+          parseInt(memoryUtil);
         const newYaml = yaml.stringify(hpaConfig);
 
         fs.writeFile(hpaFilePath, newYaml, (writeErr) => {
